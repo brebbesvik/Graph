@@ -1,4 +1,4 @@
-let json = require('../data/asthma');
+let json = require('../data/asthma-test');
 
 /**
  * Builds a directed graph based on the adjacency list
@@ -141,8 +141,11 @@ const graphEntityInstance3 = new Graph();
 graphEntityInstance3.buildGraphFromJson(json["entity-model"]);
 
 const instanceMap = new InstanceMapping();
-instanceMap.buildMapping(json["entity-instance4"].vertex);
+instanceMap.buildMapping(json["entity-instance5"].vertex);
 
-let attributes = graphEntityInstance3.getLeaves("Patient");
+//graphEntityInstance3.dfs();
+
+
+let attributes = graphEntityInstance3.getLeaves("Symptoms");
 console.log(attributes);
 console.log(instanceMap.getNames(attributes));
