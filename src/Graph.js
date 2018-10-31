@@ -87,24 +87,4 @@ Graph.prototype.getLeaves = function(name) {
     return leaves;
 };
 
-Graph.prototype.sum = function () {
-    return 1+3+2+2;
-};
-
 module.exports = Graph;
-
-
-
-
-/*const graphEntityInstance3 = new Graph();
-graphEntityInstance3.buildGraphFromJson(json["entity-model"]);
-
-const instanceMap = new InstanceMapping();
-instanceMap.buildMapping(json["entity-instance5"].vertex);
-
-let attributes = graphEntityInstance3.getLeaves("Symptoms");
-console.log(attributes);
-console.log(instanceMap.getNames(attributes));
-console.log(instanceMap.getNamesInNarrativeFormat(attributes));
-console.log(instanceMap.getNameNarrativeFormat("Oxygen-Saturation"));
-*/
