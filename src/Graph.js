@@ -129,7 +129,66 @@ InstanceMapping.prototype.getNames = function(types) {
     }
     return names;
 };
+/**
+ * Prints the mapping in a format which can be displayed in a narrative.
+ * Boolean will be printed as type or no type.
+ * Undefined will not be printed.
+ * Text or values will be printed as type + name
+ * @param type (string)  is a string from the graph vertex. It will be the index in the mapping table.
+ * @returns {string}    a string which can be printed in a narrative.
+ */
+InstanceMapping.prototype.getNameNarrativeFormat = function(type) {
+    let typeFormated = type.replace(/\-+/g, ' ').toLowerCase();
+    if(typeof this.MappingList[type] !== 'undefined') {
+        if(this.MappingList[type].name === "True")
+            return typeFormated;
+        else if (this.MappingList[type].name === "False")
+            return "no " + typeFormated;
+        else
+            return typeFormated + " " + this.MappingList[type].name;
+    }
+};
+/**
+ * Given an array of types, prints the mapping in a format which can be displayed in a narrative.
+ * Boolean will be printed as type or no type.
+ * Undefined will not be printed.
+ * Text or values will be printed as type + name
+ * @param types {Array}(string  is an array of string from graph vertices. Those will be the indexes in the mapping table.
+ * @returns (string) a string which can be printed in a narrative.
+ */
+InstanceMapping.prototype.getNamesInNarrativeFormat = function(types) {
+    let names = [];
+    for (let i=0; i<types.length; i++) {
+        let typeFormated = types[i].replace(/-+/g, ' ').toLowerCase();
+        if (typeof this.MappingList[types[i]] !== 'undefined') {
+            if (this.MappingList[types[i]].name === "True")
+                names.push(typeFormated);
+            else if (this.MappingList[types[i]].name === "False")
+                names.push("no " + typeFormated);
+            else
+                names.push(typeFormated + " " + this.MappingList[types[i]].name);
+        }
+    }
+    return this.printableList(names);
+};
 
+/**
+ * Formats an array to a printable list
+ * @param names {Array}(string) An array of strings which is going to be convert to a string list
+ * @returns {string} The printable list represented as a string
+ */
+InstanceMapping.prototype.printableList = function(names) {
+    let list = "";
+    for(let i=0; i<names.length; i++) {
+        if (i+1 === names.length)
+            list += names[i] + ".";
+        else if (i+2 === names.length)
+            list += names[i] + " and ";
+        else
+            list += names[i] + ", ";
+    }
+    return list;
+};
 
 /*const graphEntityModel = new Graph();
 graphEntityModel.buildGraphFromJson(json["entity-model"]);
@@ -149,3 +208,5 @@ instanceMap.buildMapping(json["entity-instance5"].vertex);
 let attributes = graphEntityInstance3.getLeaves("Symptoms");
 console.log(attributes);
 console.log(instanceMap.getNames(attributes));
+console.log(instanceMap.getNamesInNarrativeFormat(attributes));
+console.log(instanceMap.getNameNarrativeFormat("Oxygen-Saturation"));
