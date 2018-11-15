@@ -1,10 +1,15 @@
 //const Graph = require('./Graph');
-const json = require('../Data/asthma-test');
+//const json = require('../Data/asthma-test');
 //const EntityGraph = require('./EntityGraph');
-const EntityInstanceGraph = require('./EntityInstanceGraph');
-const Narrative = require('./Narrative');
+//const EntityInstanceGraph = require('./EntityInstanceGraph');
+//const Narrative = require('./Narrative');
+const Question = require('./Question');
 
-const graph = new EntityInstanceGraph();
+const question = new Question();
+question.generateNarrative();
+console.log(question.getNarrative());
+
+/*const graph = new EntityInstanceGraph();
 //graph.buildGraph(json["entity-model"]);
 graph.buildGraph(json["entity-instance5"]);
 //console.log(graph.getValueFromPath("p1.hasSymptoms.e3.name"));
@@ -14,7 +19,7 @@ narrative.setGraph(graph);
 narrative.readTemplate();
 narrative.transformTemplate();
 console.log(narrative.getNarrative());
-
+*/
 //console.log(graph.getVertices());
 //console.log(graph.getEdges());
 
