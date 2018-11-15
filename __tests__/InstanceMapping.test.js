@@ -1,4 +1,4 @@
-const InstanceMapping = require('../src/InstanceMapping');
+const InstanceMapping = require('../old/InstanceMapping');
 let json = require('./asthma-test');
 
 const instanceMap = new InstanceMapping();

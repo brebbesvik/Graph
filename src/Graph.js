@@ -1,90 +1,45 @@
-/**
- * Builds a directed graph based on the adjacency list
- * @constructor
- */
-function Graph() {
-    this.adjList = {}
-}
+const Vertex = require('./Vertex');
+const Edge = require('./Edge');
 
-/**
- * Add a new unconnected vertex to the graph
- * @param vertex (string)
- */
-Graph.prototype.addVertex = function(vertex) {
-    this.adjList[vertex] = []
-};
-/**
- * Add an edge between two vertices
- * @param vertex1 (string)  source vertex
- * @param vertex2 (string)  target vertex
- */
-Graph.prototype.addEdge = function(vertex1, vertex2) {
-    this.adjList[vertex1].push(vertex2)
-};
-
-/**
- * Run a depth first search through the graph. Print all the vertices
- */
-Graph.prototype.dfs = function() {
-  const visited = {};
-  const vertices = Object.keys(this.adjList);
-  for(let i=0; i<vertices.length; i++) {
-      const vertex = vertices[i];
-      this.dfsExplore(vertex, visited);
-  }
-};
-/**
- * Helper function for DFS. Explore a vertex.
- * @param vertex (string)   The vertex to explore
- * @param visited (array)   Keeps track of all the vertices which have been visited
- */
-Graph.prototype.dfsExplore = function(vertex, visited) {
-    if (!visited[vertex]) {
-        visited[vertex] = true;
-        // preVisit(vertex);
-        console.log(vertex);
-        const children = this.adjList[vertex];
-        for (let i = 0; i < children.length; i++) {
-            const child = children[i];
-            this.dfsExplore(child, visited);
-        }
+class Graph {
+    constructor() {
+        this.vertices = [];
+        this.edges = [];
     }
-    // postVisit(vertex);
-};
-/**
- * Build the graph from json object which contains vertices and edges.
- * @param json (json)   Vertices and edges
- */
-Graph.prototype.buildGraphFromJson = function(json) {
-    let vertices = json.vertex;
-    let edges = json.edges;
-    for (let i=0; i<vertices.length; i++) {
-        this.addVertex(vertices[i].name);
+    addVertex(o) {
+        let vertex = new Vertex(o, this.vertices.length);
+        this.vertices[vertex.getPosition()] = new Vertex(o, vertex.getPosition());
+        return vertex;
     }
-    for (let i=0; i<edges.length; i++) {
-        this.addEdge(edges[i].src, edges[i].trg);
+    addEdge(v, w, o) {
+        this.vertices[v.getPosition()].increaseOutgoingEdges();
+        this.vertices[w.getPosition()].increaseIncomingEdges();
+        let edge = new Edge(v.getPosition(), w.getPosition(), o, this.edges.length);
+        this.edges[edge.getPosition()] = new Edge(v.getPosition(), w.getPosition(), o, edge.getPosition());
+        return edge;
     }
-};
-/**
- * Print all the leaves from a given vertex
- * @param name (string) The vertex which should have its leaves printed
- */
-Graph.prototype.getLeaves = function(name) {
-    let leaves = [];
-    const vertices = Object.keys(this.adjList);
-    for(let i=0; i<vertices.length; i++) {
-        const vertex = vertices[i];
-        if(vertex === name) {
-            const children = this.adjList[vertex];
-            for(let j=0; j<children.length; j++) {
-                const child = children[j];
-                if (this.adjList[child].length === 0) {
-                    leaves.push(child);
-                }
+    getAdjacentVertices(v) {
+        let array = [];
+        for (let i=0; i<this.edges.length; i++) {
+            if(this.edges[i].getOrigin() === v.getPosition()) {
+                array.push(this.vertices[this.edges[i].getDestination()]);
             }
+            else if (this.edges[i].getDestination() === v.getPosition())
+                array.push(this.vertices[this.edges[i].getOrigin()]);
         }
+        return array;
     }
-    return leaves;
-};
-
+    numVertices() {
+        return this.vertices.length;
+    }
+    numEdges() {
+        return this.edges.length;
+    }
+    getVertices() {
+        return this.vertices;
+    }
+    getEdges() {
+        return this.edges;
+    }
+}
 module.exports = Graph;

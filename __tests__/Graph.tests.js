@@ -1,4 +1,4 @@
-const Graph = require('../src/Graph');
+const Graph = require('../old/Graph');
 let json = require('./asthma-test');
 
 const graphEntityInstance3 = new Graph();
