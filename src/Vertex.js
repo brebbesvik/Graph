@@ -11,6 +11,12 @@ class Vertex {
     getPosition() {
         return this.position;
     }
+    getIncomingEdges() {
+        return this.incomingEdges;
+    }
+    getOutgoingEdges() {
+        return this.outgoingEdges;
+    }
     increaseOutgoingEdges() {
         this.outgoingEdges++;
     }
