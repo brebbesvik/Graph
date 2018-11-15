@@ -23,13 +23,13 @@ test('searching for a vertex type Age should return a vertex with name 18 months
     expect(graph.getVertexFromType("Age").getObject().name).toMatch("18 months");
 });
 
+// Never use on leaves as those haven't unique names
 test('searching for a vertex with name p1 should return a vertex with name p1', ()=> {
     expect(graph.getVertexFromName("p1").getObject().name).toMatch("p1");
 });
 
-// TODO what if several vertices have the same name, such as True?
-test('searching for a vertex name 40 should return a vertex with type Respiratory-Rate', ()=> {
-    expect(graph.getVertexFromName("40").getObject().name).toMatch("40");
+test('searching for a vertex with name s1 should return a vertex with type Symptoms', ()=> {
+    expect(graph.getVertexFromName("s1").getObject().type).toMatch("Symptoms");
 });
 
 test('searching for edge e1 should have origin Patient', ()=> {
