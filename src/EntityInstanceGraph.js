@@ -32,11 +32,10 @@ class EntityInstanceGraph extends Graph {
                 return this.edges[i];
         }
     }
-    // TODO should refer to getObject(), not object
     getValueFromPath(path) {
         let pathArray = path.split(".");
         // Path refers to a vertex
-        if (pathArray.length < 3) {
+        if (pathArray.length <= 2) {
             let vertex = this.getVertexFromName(pathArray[0]);
             return vertex.getObject().name;
         }
