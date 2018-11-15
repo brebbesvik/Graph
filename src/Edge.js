@@ -9,6 +9,10 @@ class Edge {
         return this.position;
     }
 
+    getObject() {
+        return this.object;
+    }
+
     getOrigin() {
         return this.origin;
     }

@@ -2,13 +2,21 @@
 const json = require('../Data/asthma-test');
 //const EntityGraph = require('./EntityGraph');
 const EntityInstanceGraph = require('./EntityInstanceGraph');
+const Narrative = require('./Narrative');
 
 const graph = new EntityInstanceGraph();
 //graph.buildGraph(json["entity-model"]);
 graph.buildGraph(json["entity-instance5"]);
+//console.log(graph.getValueFromPath("p1.hasSymptoms.e3.name"));
 
-console.log(graph.getVertices());
-console.log(graph.getEdges());
+const narrative = new Narrative();
+narrative.setGraph(graph);
+narrative.readTemplate();
+narrative.transformTemplate();
+console.log(narrative.getNarrative());
+
+//console.log(graph.getVertices());
+//console.log(graph.getEdges());
 
 /*
 const graph = new Graph();

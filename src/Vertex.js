@@ -5,6 +5,9 @@ class Vertex {
         this.object = o;
         this.position = p;
     }
+    getObject() {
+        return this.object;
+    }
     getPosition() {
         return this.position;
     }

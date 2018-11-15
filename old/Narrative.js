@@ -41,5 +41,3 @@ module.exports = Narrative;
 /*let narrative = new Narrative();
 narrative.read();
 narrative.transform();*/
-
-
