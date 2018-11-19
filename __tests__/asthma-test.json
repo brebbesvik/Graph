@@ -100,5 +100,34 @@
       {"name": "receives", "src": "Patient", "trg": "Treatment"},
       {"name": "hasTreatment", "src": "Diagnosis", "trg": "Treatment"}
     ]
+  },
+
+  "workflow-model" : {
+    "Task": [
+      {"name": "Init"},
+      {"name": "Treat"},
+      {"name": "Observe"}
+    ],
+    "Flow": [
+      {"name": "f1", "src": "Init", "trg": "Treat"},
+      {"name": "f2", "src": "Init", "trg": "Observe"}
+    ]
+  },
+
+  "workflow-instance1" : {
+    "Task": [
+      {"name": "18 months old child weighing 11 kg, with history of wheeze and difficulty breathing", "type": "Init"}
+    ],
+    "Flow": []
+  },
+
+  "workflow-instance2" : {
+    "Task": [
+      {"id": "1", "name": "Initial-Diagnosis", "type": "Init"},
+      {"id": "2", "name": "Treatment", "type": "Treat"}
+    ],
+    "Flow": [
+      {"name": ":f1", "src": "1", "trg": "2", "type": "f1"}
+    ]
   }
 }
