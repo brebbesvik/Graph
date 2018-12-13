@@ -134,7 +134,7 @@
 
   "workflow-instance1" : {
     "Task": [
-      {"name": "A child arrives at Haukeland hospital. \nThe child's name is <%p1%>, weighs <%p1.e2%> and is <%p1.e1%> old.\nYou do some quick tests and observations and find that the child has \n<%p1.hasObservations.e4.hasDifficultyBreathingPresentation%>, <%p1.hasObservations.e3.hasWheezePresentation%>, <%p1.hasObservations.e18.hasRespiratoryRatePresentation%> and <%p1.hasObservations.e14.hasAVPUPresentation%>. \nThe child has obviously asthma, but what is the severity?", "type": "Init"}
+      {"name": "18 months old child weighing 11 kg, with history of wheeze and difficulty breathing", "type": "Init"}
     ],
     "Flow": []
   },
