@@ -11,7 +11,10 @@ class EntityInstanceGraph extends Graph {
             this.addVertex({name: v[i].name, type: v[i].type});
         }
         for (let i=0; i<e.length; i++) {
-            this.addEdge(this.getVertexFromType(e[i].src), this.getVertexFromType(e[i].trg), e[i].name);
+            if(e[i].constraint==null)
+                this.addEdge(this.getVertexFromType(e[i].src), this.getVertexFromType(e[i].trg), {name: e[i].name});
+            else
+                this.addEdge(this.getVertexFromType(e[i].src), this.getVertexFromType(e[i].trg), {name: e[i].name, constraint: e[i].constraint});
         }
     }
     getVertexFromType(type) {
@@ -28,7 +31,7 @@ class EntityInstanceGraph extends Graph {
     }
     getEdge(origin, name) {
         for(let i=0; i<this.edges.length; i++) {
-            if (this.edges[i].getObject() === name && this.edges[i].getOrigin() === origin)
+            if (this.edges[i].getObject().name === name && this.edges[i].getOrigin() === origin)
                 return this.edges[i];
         }
         return null;
@@ -38,11 +41,11 @@ class EntityInstanceGraph extends Graph {
         let vertex = null;
         // Path refers to a vertex/source
         if (pathArray.length === 1){
-            vertex = this.getVertexFromName(pathArray[0]);
+            vertex = this.getVertexFromType(pathArray[0]);
         }
         // Path is complete with a source and edges
         else {
-            let edge = this.getEdge(this.getVertexFromName(pathArray[0]).getPosition(), pathArray[1]);
+            let edge = this.getEdge(this.getVertexFromType(pathArray[0]).getPosition(), pathArray[1]);
             for (let i = 2; i < pathArray.length; i++) {
                 edge = this.getEdge(edge.getDestination(), pathArray[i]);
             }

@@ -11,12 +11,12 @@ class Narrative {
     readTemplate() {
         // TODO this template should come from the data model
         this.template = "A child arrives at Haukeland hospital.\n" +
-            "The child's name is <%p1%>, weighs <%p1.e2%> and is <%p1.e1%> old. \n" +
+            "The child's name is <%Patient%>, weighs <%Patient.e2%> and is <%Patient.e1%> old. \n" +
             "You do some quick tests and observations and find that the child has \n" +
-            "<%p1.hasObservations.e4%>, " +
-            "<%p1.hasObservations.e3%>, " +
-            "<%p1.hasObservations.e18%> and " +
-            "<%p1.hasObservations.e14%>." +
+            "<%Patient.hasObservations.e4%>, " +
+            "<%Patient.hasObservations.e3%>, " +
+            "<%Patient.hasObservations.e18%> and " +
+            "<%Patient.hasObservations.e14%>." +
             "\nThe child has obviously asthma, but what is the severity?";
     }
     getTags() {
