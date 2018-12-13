@@ -1,5 +1,6 @@
 const json = require('../Data/asthma-test');
 const EntityInstanceGraph = require('./EntityInstanceGraph');
+const WorkflowInstanceGraph = require('./WorkflowInstanceGraph');
 const Narrative = require('./Narrative');
 
 class Question {
@@ -9,15 +10,30 @@ class Question {
         this.incorrectAnswer = null;
         this.reward=0;
         this.category=null;
+        this.entityGraph = null;
+        this.workflowGraph = null;
     }
     setNarrative(narrative) {
         this.narrative=narrative;
     }
-    generateNarrative() {
+    setEntityGraph() {
         const graph = new EntityInstanceGraph();
         graph.buildGraph(json["entity-instance5"]);
+        this.entityGraph = graph;
+    }
+    setWorkflowGraph() {
+        const graph = new WorkflowInstanceGraph();
+        graph.buildGraph(json["workflow-instance1"]);
+        this.workflowGraph = graph;
+    }
+    generateQuestion() {
+        this.setEntityGraph();
+        this.setWorkflowGraph();
+        this.generateNarrative();
+    }
+    generateNarrative() {
         const narrative = new Narrative();
-        narrative.setGraph(graph);
+        narrative.setEntityGraph(this.entityGraph);
         narrative.readTemplate();
         narrative.transformTemplate();
         this.narrative = narrative.getNarrative();

@@ -26,16 +26,31 @@ class EntityInstanceGraph extends Graph {
                 return this.vertices[i];
         }
     }
-    getEdge(name) {
+    getEdge(origin, name) {
         for(let i=0; i<this.edges.length; i++) {
-            if (this.edges[i].getObject() === name)
+            if (this.edges[i].getObject() === name && this.edges[i].getOrigin() == origin)
                 return this.edges[i];
         }
     }
     getValueFromPath(path) {
         let pathArray = path.split(".");
-        // Path refers to a vertex
-        if (pathArray.length <= 2) {
+        let vertex = null;
+        //console.log(pathArray);
+        // Path refers to a vertex/source
+        if (pathArray.length == 1){
+            vertex = this.getVertexFromName(pathArray[0]);
+        }
+        // Path is complete with a source and edges
+        else {
+            let edge = this.getEdge(this.getVertexFromName(pathArray[0]).getPosition(), pathArray[1]);
+            for (let i = 2; i < pathArray.length; i++) {
+                edge = this.getEdge(edge.getDestination(), pathArray[i]);
+            }
+            vertex = this.vertices[edge.getDestination()];
+        }
+        return vertex.getObject().name;
+
+        /*if (pathArray.length <= 2) {
             let vertex = this.getVertexFromName(pathArray[0]);
             return vertex.getObject().name;
         }
@@ -43,7 +58,7 @@ class EntityInstanceGraph extends Graph {
         else {
             let edge = this.getEdge(pathArray[pathArray.length - 2]);
             return this.vertices[edge.getDestination()].getObject().name;
-        }
+        }*/
     }
 }
 module.exports = EntityInstanceGraph;

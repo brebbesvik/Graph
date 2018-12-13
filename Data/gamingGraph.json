@@ -1,0 +1,53 @@
+{
+  "game-model": {
+    "vertex": [
+      {"name": "Quiz"},
+      {"name":  "Category"},
+      {"name":  "Level"},
+      {"name": "PassingCondition"},
+      {"name": "RequiredMinSkill"},
+      {"name": "Question"},
+      {"name": "Scenario"},
+      {"name": "AnswerKey"},
+      {"name": "Evidence"},
+      {"name": "Guideline"},
+      {"name": "Tags"},
+      {"name": "AnswerAlternatives"},
+      {"name": "Correct"},
+      {"name": "Reward"}
+    ],
+    "edges": [
+      {"name": "e10", "src": "Quiz", "trg": "Category"},
+      {"name": "e11", "src": "Quiz", "trg": "Level"},
+      {"name": "e1", "src": "Quiz", "trg": "PassingCondition"},
+      {"name": "e2", "src": "Quiz", "trg": "RequiredMinSkill"},
+      {"name": "consistsOf", "src": "Quiz", "trg": "Question"},
+      {"name": "e3", "src": "Quiz", "trg": "Scenario"},
+      {"name": "e4", "src": "Quiz", "trg": "AnswerKey"},
+      {"name": "e5", "src": "Quiz", "trg": "Evidence"},
+      {"name": "e6", "src": "Quiz", "trg": "Guideline"},
+      {"name": "e7", "src": "Quiz", "trg": "Tags"},
+      {"name": "has", "src": "Quiz", "trg": "AnswerAlternatives"},
+      {"name": "e8", "src": "Quiz", "trg": "Correct"},
+      {"name": "e9", "src": "Quiz", "trg": "Reward"}
+    ]
+  },
+  "quiz-instance1": {
+    "vertex": [
+      {"name": "asthmaQuiz1", "type": "Quiz"},
+      {"name": "Asthma", "type": "Category"},
+      {"name": "1", "type": "Level"},
+      {"name": "5", "type": "passingCondition"},
+      {"name": "0", "type": "RequiredSkill"},
+      {"name": "asthmaQuestion", "type": "Question"},
+      {"name": "<%p1.name%> visits the hospital with a <%p1.hasSymptom.e2.name%>", "type": "Scenario"},
+      {"name": "tags"},
+      {"name": "Per Hansen", "type": "<%p1.name%>"},
+      {"name": "cough", "type": "<%p1.hasSymptom.e2.name%>"},
+      {"name": "asthma", "type": "answerAlternatives"},
+      {"name":  "correct"},
+      {"name": "tuberculosis", "type": "answerAlternatives"},
+      {"name": "malaria", "type": "answerAlternatives"}
+    ]
+  }
+}

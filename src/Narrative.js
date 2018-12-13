@@ -1,20 +1,23 @@
 class Narrative {
     constructor() {
         this.re = /<%([a-zA-Z0-9_\-.]+)%>/g;
-        this.graph = null;
+        this.entityGraph = null;
         this.template = "";
         this.narrative = "";
     }
-    setGraph(graph) {
-        this.graph = graph;
+    setEntityGraph(graph) {
+        this.entityGraph = graph;
     }
     readTemplate() {
         // TODO this template should come from the data model
-        this.template = 'A child arrives at Haukeland hospital. \n' +
-            'The child\'s name is <%p1.name%>, weighs <%p1.e2.name%> and is <%p1.e1.name%> old. \n' +
-            'You do some quick tests and observations and find that ' +
-            '<%p1.hasSymptoms.e4.name%>, <%p1.hasSymptoms.e3.name%>, <%p1.hasSymptoms.e18.name%> and <%p1.hasSymptoms.e14.name%>. \n' +
-            'The child has obviously asthma, but what is the severity?';
+        this.template = "A child arrives at Haukeland hospital.\n" +
+            "The child's name is <%p1%>, weighs <%p1.e2%> and is <%p1.e1%> old. \n" +
+            "You do some quick tests and observations and find that the child has \n" +
+            "<%p1.hasObservations.e4.hasDifficultyBreathingPresentation%>, " +
+            "<%p1.hasObservations.e3.hasWheezePresentation%>, " +
+            "<%p1.hasObservations.e18.hasRespiratoryRatePresentation%> and " +
+            "<%p1.hasObservations.e14.hasAVPUPresentation%>." +
+            "\nThe child has obviously asthma, but what is the severity?";
     }
     getTags() {
         let tags = [];
@@ -28,9 +31,8 @@ class Narrative {
         let tags = this.getTags();
         let tpl = this.template;
         for(let i=0; i<tags.length; i++) {
-            // TODO Get printable string
             let regex = new RegExp("<%" + tags[i] + "%>", "g");
-            tpl = tpl.replace(regex, this.graph.getValueFromPath(tags[i]));
+            tpl = tpl.replace(regex, this.entityGraph.getValueFromPath(tags[i]));
         }
         this.narrative = tpl;
     }

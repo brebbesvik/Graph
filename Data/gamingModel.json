@@ -1,0 +1,45 @@
+{
+  "quiz1": {
+    "category": "Asthma",
+    "level": "1",
+    "passingCondition": 5,
+    "requiredMinSkill": 0,
+    "questions": [
+      {
+        "question1": {
+          "scenario": "<%p1.name%> visits the hospital with a <%p1.hasSymptom.e2.name%>",
+          "tags": [
+            {
+              "<%p1.name%>": "Per Hansen"
+            },
+            {
+              "<%p1.hasSymptom.e2.name%>": "cough"
+            }
+          ],
+          "answerAlternatives": [
+            {
+              "alternative": "asthma",
+              "reward": 10,
+              "correct": "true"
+            },
+            {
+              "alternative": "tuberculosis",
+              "reward": 0,
+              "correct": "false"
+            },
+            {
+              "alternative": "malaria",
+              "reward": -10,
+              "correct": "false"
+            }
+          ],
+          "explanation": "Cough is one of the symptoms of asthma or tuberculosis. However, what answer we are looking for in this setting is asthma.",
+          "evidence": "http://www.foskning.no",
+          "guideline": "http://www.nice.org.uk"
+        }
+      }
+    ]
+  }
+}
+
+

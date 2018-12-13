@@ -24,5 +24,12 @@ class WorkflowInstanceGraph extends Graph {
             }
         }
     }
+    getVertexFromType(type) {
+        for(let i=0; i<this.vertices.length; i++) {
+            if (this.vertices[i].getObject().type === type) {
+                return this.vertices[i];
+            }
+        }
+    }
 }
 module.exports = WorkflowInstanceGraph;
