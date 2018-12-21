@@ -36,6 +36,16 @@ class EntityInstanceGraph extends Graph {
         }
         return null;
     }
+    getEdges(origin, name) {
+        let edges = [];
+        for(let i=0; i<this.edges.length; i++) {
+            if (this.edges[i].getObject().name === name && this.edges[i].getOrigin() === origin)
+                edges.push(this.edges[i]);
+        }
+        return edges;
+    }
+
+    /*
     getValueFromPath(path) {
         let pathArray = path.split(".");
         let vertex = null;
@@ -54,6 +64,51 @@ class EntityInstanceGraph extends Graph {
         // Return presentation vertex if there is one
         let presentationEdge = this.getEdge(vertex.getPosition(), "hasPresentation");
         return (presentationEdge==null ? vertex.getObject().name : this.vertices[presentationEdge.getDestination()].getObject().name);
+    }*/
+    getVertexFromPath(path) {
+        let pathArray = path.split(".");
+        let vertex = null;
+        let edge = null;
+        for (let i = 0; i < pathArray.length; i++) {
+            let v = this.getVertexFromType(pathArray[i]);
+            if (v == null) {
+                let edges = this.getEdges(vertex.getObject().type, pathArray[i]);
+                if (edges.length === 1)
+                    edge = edges[0];
+
+                else {
+                    for (let j=0; j<edges.length; j++) {
+                        if (edges[j].getDestination() === pathArray[i + 1]) {
+                            edge = edges[j];
+                            i++;
+                        }
+                    }
+                }
+            }
+            else
+                vertex = v;
+        }
+        if (edge == null) return vertex;
+        return (edge.getDestination() === vertex.getObject().type ? vertex : this.getVertices()[edge.getDestination()].getObject().name);
     }
+
+    getVertexPresentation(vertex){
+        let edge = this.getEdge(vertex.getPosition(), 'hasMeasurement');
+        if (edge == null)
+            edge = this.getEdge(vertex.getPosition(), "hasPresentation");
+        else
+            edge =this.getEdge(edge.getDestination(), "hasPresentation");
+        return (edge == null ? vertex.getObject().name : this.getVertices()[edge.getDestination()].getObject().name);
+
+    }
+
+    getTextFromPath(path) {
+        let vertex = this.getVertexFromPath(path);
+        return this.getVertexPresentation(vertex);
+
+
+    }
+
+    // Patient -> underGoesExamination -> Wheeze
 }
 module.exports = EntityInstanceGraph;

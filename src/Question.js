@@ -1,4 +1,5 @@
-const json = require('../Data/asthma-test');
+// const json = require('../Data/asthma-test');
+const json = require('../Data/email');
 const EntityInstanceGraph = require('./EntityInstanceGraph');
 const WorkflowInstanceGraph = require('./WorkflowInstanceGraph');
 const Narrative = require('./Narrative');
@@ -18,7 +19,8 @@ class Question {
     }
     setEntityGraph() {
         const graph = new EntityInstanceGraph();
-        graph.buildGraph(json["entity-instance5"]);
+        //graph.buildGraph(json["entity-instance5"]);
+        graph.buildGraph(json["entity-instance"]);
         this.entityGraph = graph;
     }
     setWorkflowGraph() {
@@ -28,7 +30,7 @@ class Question {
     }
     generateQuestion() {
         this.setEntityGraph();
-        this.setWorkflowGraph();
+        //this.setWorkflowGraph();
         this.generateNarrative();
     }
     generateNarrative() {
