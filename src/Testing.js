@@ -1,12 +1,12 @@
 //const Graph = require('./Graph');
-const json = require('../Data/asthma-test');
+//const json = require('../Data/asthma-test');
 //const EntityGraph = require('./EntityGraph');
 //const EntityInstanceGraph = require('./EntityInstanceGraph');
 //const Narrative = require('./Narrative');
-const Question = require('./Question');
+//const Question = require('./Question');
 //const WorkflowGraph = require('./WorkflowGraph');
-const WorkflowInstanceGraph = require('./WorkflowInstanceGraph');
-const Quiz = require('./Quiz');
+//const WorkflowInstanceGraph = require('./Graph/WorkflowInstanceGraph');
+//const Quiz = require('./Quiz');
 const QuestionDAO = require('./DAO/QuestionDAO');
 
 /*const graph = new WorkflowInstanceGraph();

@@ -2,7 +2,6 @@ class AnswerAlternative {
     constructor() {
         this._alternative = "";
         this._reward = 0;
-        this._correct = false;
     }
     setAlternative(alternative) {
         this._alternative = alternative;
@@ -15,12 +14,6 @@ class AnswerAlternative {
     }
     getReward() {
         return this._reward;
-    }
-    setCorrect(correct) {
-        this._correct = correct;
-    }
-    getCorrect() {
-        return this._correct;
     }
 }
 module.exports = AnswerAlternative;

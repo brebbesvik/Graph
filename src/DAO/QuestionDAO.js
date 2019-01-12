@@ -1,6 +1,8 @@
 const json = require('../../Data/gamingModel');
 const Question = require('../Model/Question');
 const AnswerAlternative = require('../Model/AnswerAlternative');
+const Template = require('../Graph/Template');
+
 class QuestionDAO {
     constructor() {
     }
@@ -20,10 +22,11 @@ class QuestionDAO {
                                     question.setDiscipline(discipline);
                                     question.setRequiredMinSkill(jL.requiredMinSkill);
 
-                                    // TODO narrative must be generated from graph
-                                    question.setNarrative(jQ.narrative);
-                                    // TODO: answerKey must be generated from graph
-                                    question.setAnswerKey(jQ.answerKey);
+                                    let template = new Template();
+                                    template.generateEntityGraph(jQ.entityInstance);
+                                    question.setNarrative(template.transformTemplate(jQ.narrative));
+                                    question.setAnswerKey(template.transformTemplate(jQ.answerKey));
+
                                     question.setAnswerAlternatives(this._getAnswerKeys(jQ));
                                     question.setAnswerExplanation(jQ.explanation);
 
@@ -38,8 +41,6 @@ class QuestionDAO {
             let answerAlternative = new AnswerAlternative();
             answerAlternative.setAlternative(question.answerAlternatives[i].alternative);
             answerAlternative.setReward(question.answerAlternatives[i].reward);
-            // TODO: correct must be generated from graph
-            answerAlternative.setCorrect(question.answerAlternatives[i].correct);
             answerAlternatives.push(answerAlternative);
         }
         return answerAlternatives;

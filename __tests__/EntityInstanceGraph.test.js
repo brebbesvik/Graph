@@ -1,5 +1,5 @@
 const json = require('./asthma-test');
-const EntityInstanceGraph = require('../src/EntityInstanceGraph');
+const EntityInstanceGraph = require('../src/Graph/EntityInstanceGraph');
 
 const graph = new EntityInstanceGraph();
 

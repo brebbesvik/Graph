@@ -1,5 +1,5 @@
 const json = require('./asthma-test');
-const EntityGraph = require('../src/EntityGraph');
+const EntityGraph = require('../src/Graph/EntityGraph');
 
 const graph = new EntityGraph();
 

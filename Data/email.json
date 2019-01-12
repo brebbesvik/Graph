@@ -9,10 +9,13 @@
     {"name": "AVPU"},
     {"name": "Wheeze-value"},
     {"name": "BPM"},
+    {"name": "Severity"},
     {"name": "Presentation", "constraint":  "[abstract"},
     {"name": "AVPU-Presentation"},
     {"name": "Wheeze-Presentation"},
-    {"name": "Pulse-Rate-Presentation"}
+    {"name": "Pulse-Rate-Presentation"},
+    {"name": "Diagnosis", "constraint": "[abstract]"},
+    {"name": "Asthma"}
   ],
   "edges": [
     {"name": "undergoesExamination", "src": "Patient", "trg": "Examination"},
@@ -22,12 +25,15 @@
     {"name": "hasMeasurement", "src": "Examination", "trg": "Measurement"},
     {"name": "avpuInheritsMeasurement", "src": "AVPU", "trg": "Measurement", "constraint": "[inherit]"},
     {"name": "wheezeValueInheritsMeasurement", "src": "Wheeze-Value", "trg": "Measurement", "constraint": "[inherit]"},
+    {"name": "severityInheritsMeasurement", "src": "Severity", "trg": "Measurement", "constraint": "[inherit]"},
     {"name": "bpmInheritsMeasurement", "src": "BPM", "trg": "Measurement", "constraint": "[inherit]"},
     {"name": "hasPresentation", "src": "Measurement", "trg": "Presentation"},
     {"name": "consciousnessPresentationInheritsPresentation", "src": "Consciousness-Presentation", "trg": "Presentation","constraint": "[inherit]"},
     {"name": "wheezePresentationInheritsPresentation", "src": "Wheeze-Presentation", "trg": "Presentation","constraint": "[inherit]"},
     {"name": "pulseRatePresentationInheritsPresentation", "src": "Pulse-Rate-Presentation", "trg": "Presentation","constraint": "[inherit]"},
-    {"name": "hasPresentation", "src": "Wheeze", "trg": "Wheeze-Presentation"}
+    {"name": "hasPresentation", "src": "Wheeze", "trg": "Wheeze-Presentation"},
+    {"name": "hasDiagnosis", "src": "Patient", "trg": "Diagnosis"},
+    {"name": "asthmaInheritsDiagnosis", "src": "Asthma", "trg": "Diagnosis", "constraint": "[inherit]"}
   ]
 },
 
@@ -42,7 +48,9 @@
       {"name": "120 bpm", "type": "BPM"},
       {"name": "is verbal", "type": "Consciousness-Presentation"},
       {"name": "is wheezing", "type": "Wheeze-Presentation"},
-      {"name": "is having a pulse rate of 120 bpm", "type": "Pulse-Rate-Presentation"}
+      {"name": "is having a pulse rate of 120 bpm", "type": "Pulse-Rate-Presentation"},
+      {"name": "Asthma", "type": "Asthma"},
+      {"name": "Severe", "type": "Severity"}
     ],
     "edges": [
       {"name": "undergoesExamination", "src": "Patient", "trg": "Consciousness"},
@@ -53,7 +61,9 @@
       {"name": "hasMeasurement", "src": "Pulse-Rate", "trg": "BPM"},
       {"name": "hasPresentation", "src": "AVPU", "trg": "Consciousness-Presentation"},
       {"name": "hasPresentation", "src": "Wheeze-Value", "trg": "Wheeze-Presentation"},
-      {"name": "hasPresentation", "src": "BPM", "trg": "Pulse-Rate-Presentation"}
+      {"name": "hasPresentation", "src": "BPM", "trg": "Pulse-Rate-Presentation"},
+      {"name": "hasDiagnosis", "src": "Patient", "trg": "Asthma"},
+      {"name": "hasSeverity", "src": "Asthma", "trg": "Severity"}
     ]
   }
 }

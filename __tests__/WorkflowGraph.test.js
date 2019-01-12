@@ -1,5 +1,5 @@
 const json = require('./asthma-test');
-const WorkflowGraph = require('../src/WorkflowGraph');
+const WorkflowGraph = require('../src/Graph/WorkflowGraph');
 
 const graph = new WorkflowGraph();
 

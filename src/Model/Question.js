@@ -41,7 +41,7 @@ class Question {
         return this._answerKey;
     }
     setAnswerAlternatives(answerAlternatives) {
-        this.answerAlternatives = answerAlternatives;
+        this._answerAlternatives = answerAlternatives;
     }
     getAnswerAlternatives() {
         return this._answerAlternatives;

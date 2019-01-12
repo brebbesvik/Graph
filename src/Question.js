@@ -1,8 +1,8 @@
 // const json = require('../Data/asthma-test');
 const json = require('../Data/email');
-const EntityInstanceGraph = require('./EntityInstanceGraph');
-const WorkflowInstanceGraph = require('./WorkflowInstanceGraph');
-const Narrative = require('./Narrative');
+const EntityInstanceGraph = require('./Graph/EntityInstanceGraph');
+const WorkflowInstanceGraph = require('./Graph/WorkflowInstanceGraph');
+const Narrative = require('./Graph/Narrative');
 
 class Question {
     constructor() {

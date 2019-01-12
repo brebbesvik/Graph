@@ -1,5 +1,5 @@
 const json = require('./asthma-test');
-const WorkflowInstanceGraph = require('../src/WorkflowInstanceGraph');
+const WorkflowInstanceGraph = require('../src/Graph/WorkflowInstanceGraph');
 
 const graph = new WorkflowInstanceGraph();
 

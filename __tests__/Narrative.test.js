@@ -1,6 +1,6 @@
 const json = require('./asthma-test');
-const Narrative = require('../src/Narrative');
-const EntityInstanceGraph = require('../src/EntityInstanceGraph');
+const Narrative = require('../src/Graph/Narrative');
+const EntityInstanceGraph = require('../src/Graph/EntityInstanceGraph');
 
 const graph = new EntityInstanceGraph();
 const narrative = new Narrative();

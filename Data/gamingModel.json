@@ -19,22 +19,22 @@
             "questions": [
               {
 
-                  "narrative": "<%Patient%> visits the hospital with a <%Patient.undergoesExamination.Wheeze>. What condition do you want to examine for?",
+                  "narrative": "<%Patient%> visits the hospital with a <%Patient.underGoesExamination.Wheeze%>. What condition do you want to examine for?",
                   "entityInstance": "entity-instance",
                   "answerKey": "<%Patient.hasDiagnosis.Asthma%>",
                   "answerAlternatives": [
                     {
-                      "alternative": "asthma",
+                      "alternative": "Asthma",
                       "reward": 10,
                       "correct": "true"
                     },
                     {
-                      "alternative": "tuberculosis",
+                      "alternative": "Tuberculosis",
                       "reward": 0,
                       "correct": "false"
                     },
                     {
-                      "alternative": "malaria",
+                      "alternative": "Malaria",
                       "reward": -10,
                       "correct": "false"
                     }
@@ -48,7 +48,7 @@
 
                   "narrative": "<%Patient%> arrives at the emergency room. She <%Patient.underGoesExamination.Wheeze%>. You do some quick tests and observations and find that <%Patient%> <%Patient.underGoesExamination.Consciousness%> and <%Patient.underGoesExamination.Pulse-Rate%>",
                   "entityInstance": "entity-instance",
-                  "answerKey": "<%Patient.hasDiagnosis.Asthma.hasSeverity%>",
+                  "answerKey": "<%Patient.hasDiagnosis.Asthma.hasSeverity.Severity%>",
                   "answerAlternatives": [
                     {
                       "alternative": "Mild",

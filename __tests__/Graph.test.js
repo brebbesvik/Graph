@@ -1,4 +1,4 @@
-const Graph = require('../src/Graph');
+const Graph = require('../src/Graph/Graph');
 
 const graph = new Graph();
 
