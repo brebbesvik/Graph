@@ -7,7 +7,8 @@
 //const WorkflowGraph = require('./WorkflowGraph');
 //const WorkflowInstanceGraph = require('./Graph/WorkflowInstanceGraph');
 //const Quiz = require('./Quiz');
-const QuestionDAO = require('./DAO/QuestionDAO');
+//const QuestionDAO = require('./DAO/QuestionDAO');
+const QuizDAO = require('./DAO/QuizDAO');
 
 /*const graph = new WorkflowInstanceGraph();
 graph.buildGraph(json["workflow-instance2"]);
@@ -24,5 +25,12 @@ console.log(question.getNarrative())
 quiz.generateQuestions();
 */
 
-let questionDAO = new QuestionDAO();
+/*let questionDAO = new QuestionDAO();
 console.log(QuestionDAO.getQuestions("Asthma", "Examination", 1))
+*/
+
+
+console.log(QuizDAO.getCategories());
+console.log(QuizDAO.getDisciplines("Asthma"));
+console.log(QuizDAO.getLevels("Asthma", "Examination"));
+console.log(QuizDAO.getAllowedLevels("Asthma", "Examination", 1));
