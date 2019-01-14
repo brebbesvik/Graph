@@ -18,29 +18,29 @@ class EntityInstanceGraph extends Graph {
         }
     }
     getVertexFromType(type) {
-        for(let i=0; i<this.vertices.length; i++) {
-            if (this.vertices[i].getObject().type === type)
-                return this.vertices[i];
+        for(let i=0; i<this._vertices.length; i++) {
+            if (this._vertices[i].getObject().type === type)
+                return this._vertices[i];
         }
     }
     getVertexFromName(name) {
-        for(let i=0; i<this.vertices.length; i++) {
-            if (this.vertices[i].getObject().name === name)
-                return this.vertices[i];
+        for(let i=0; i<this._vertices.length; i++) {
+            if (this._vertices[i].getObject().name === name)
+                return this._vertices[i];
         }
     }
     getEdge(origin, name) {
-        for(let i=0; i<this.edges.length; i++) {
-            if (this.edges[i].getObject().name === name && this.edges[i].getOrigin() === origin)
-                return this.edges[i];
+        for(let i=0; i<this._edges.length; i++) {
+            if (this._edges[i].getObject().name === name && this._edges[i].getOrigin() === origin)
+                return this._edges[i];
         }
         return null;
     }
     getEdges(origin, name) {
         let edges = [];
-        for(let i=0; i<this.edges.length; i++) {
-            if (this.edges[i].getObject().name === name && this.edges[i].getOrigin() === origin)
-                edges.push(this.edges[i]);
+        for(let i=0; i<this._edges.length; i++) {
+            if (this._edges[i].getObject().name === name && this._edges[i].getOrigin() === origin)
+                edges.push(this._edges[i]);
         }
         return edges;
     }
@@ -65,7 +65,7 @@ class EntityInstanceGraph extends Graph {
         let presentationEdge = this.getEdge(vertex.getPosition(), "hasPresentation");
         return (presentationEdge==null ? vertex.getObject().name : this.vertices[presentationEdge.getDestination()].getObject().name);
     }*/
-    getVertexFromPath(path) {
+    _getVertexFromPath(path) {
         let pathArray = path.split(".");
         let vertex = null;
         let edge = null;
@@ -92,7 +92,7 @@ class EntityInstanceGraph extends Graph {
         return (edge.getDestination() === vertex.getObject().type ? vertex : this.getVertices()[edge.getDestination()].getObject().name);
     }
 
-    getVertexPresentation(vertex){
+    _getVertexPresentation(vertex){
         let edge = this.getEdge(vertex.getPosition(), 'hasMeasurement');
         if (edge == null)
             edge = this.getEdge(vertex.getPosition(), "hasPresentation");
@@ -103,8 +103,8 @@ class EntityInstanceGraph extends Graph {
     }
 
     getTextFromPath(path) {
-        let vertex = this.getVertexFromPath(path);
-        return this.getVertexPresentation(vertex);
+        let vertex = this._getVertexFromPath(path);
+        return this._getVertexPresentation(vertex);
 
 
     }

@@ -1,24 +1,24 @@
 class Edge {
     constructor(v, w, o, p) {
-        this.object = o;
-        this.origin = v;
-        this.destination = w;
-        this.position = p;
+        this._object = o;
+        this._origin = v;
+        this._destination = w;
+        this._position = p;
     }
     getPosition() {
-        return this.position;
+        return this._position;
     }
 
     getObject() {
-        return this.object;
+        return this._object;
     }
 
     getOrigin() {
-        return this.origin;
+        return this._origin;
     }
 
     getDestination() {
-        return this.destination;
+        return this._destination;
     }
 }
 module.exports = Edge;

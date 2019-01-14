@@ -6,6 +6,7 @@ const QuestionDAO = require('./QuestionDAO');
 class QuizDAO {
     constructor() {
     }
+
     static getCategories () {
         let categories = [];
         for (let i = 0; i < json.categories.length; i++)

@@ -3,43 +3,43 @@ const Edge = require('./Edge');
 
 class Graph {
     constructor() {
-        this.vertices = [];
-        this.edges = [];
+        this._vertices = [];
+        this._edges = [];
     }
     addVertex(o) {
-        let vertex = new Vertex(o, this.vertices.length);
-        this.vertices[vertex.getPosition()] = new Vertex(o, vertex.getPosition());
+        let vertex = new Vertex(o, this._vertices.length);
+        this._vertices[vertex.getPosition()] = new Vertex(o, vertex.getPosition());
         return vertex;
     }
     addEdge(v, w, o) {
-        this.vertices[v.getPosition()].increaseOutgoingEdges();
-        this.vertices[w.getPosition()].increaseIncomingEdges();
-        let edge = new Edge(v.getPosition(), w.getPosition(), o, this.edges.length);
-        this.edges[edge.getPosition()] = new Edge(v.getPosition(), w.getPosition(), o, edge.getPosition());
+        this._vertices[v.getPosition()].increaseOutgoingEdges();
+        this._vertices[w.getPosition()].increaseIncomingEdges();
+        let edge = new Edge(v.getPosition(), w.getPosition(), o, this._edges.length);
+        this._edges[edge.getPosition()] = new Edge(v.getPosition(), w.getPosition(), o, edge.getPosition());
         return edge;
     }
     getAdjacentVertices(v) {
         let array = [];
-        for (let i=0; i<this.edges.length; i++) {
-            if(this.edges[i].getOrigin() === v.getPosition()) {
-                array.push(this.vertices[this.edges[i].getDestination()]);
+        for (let i=0; i<this._edges.length; i++) {
+            if(this._edges[i].getOrigin() === v.getPosition()) {
+                array.push(this._vertices[this._edges[i].getDestination()]);
             }
-            else if (this.edges[i].getDestination() === v.getPosition())
-                array.push(this.vertices[this.edges[i].getOrigin()]);
+            else if (this._edges[i].getDestination() === v.getPosition())
+                array.push(this._vertices[this._edges[i].getOrigin()]);
         }
         return array;
     }
     numVertices() {
-        return this.vertices.length;
+        return this._vertices.length;
     }
     numEdges() {
-        return this.edges.length;
+        return this._edges.length;
     }
     getVertices() {
-        return this.vertices;
+        return this._vertices;
     }
     getEdges() {
-        return this.edges;
+        return this._edges;
     }
 }
 module.exports = Graph;

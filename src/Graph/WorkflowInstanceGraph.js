@@ -18,16 +18,16 @@ class WorkflowInstanceGraph extends Graph {
         }
     }
     getVertexFromId(id) {
-        for(let i=0; i<this.vertices.length; i++) {
-            if (this.vertices[i].getObject().id === id) {
-                return this.vertices[i];
+        for(let i=0; i<this._vertices.length; i++) {
+            if (this._vertices[i].getObject().id === id) {
+                return this._vertices[i];
             }
         }
     }
     getVertexFromType(type) {
-        for(let i=0; i<this.vertices.length; i++) {
-            if (this.vertices[i].getObject().type === type) {
-                return this.vertices[i];
+        for(let i=0; i<this._vertices.length; i++) {
+            if (this._vertices[i].getObject().type === type) {
+                return this._vertices[i];
             }
         }
     }

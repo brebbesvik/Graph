@@ -1,27 +1,27 @@
 class Vertex {
     constructor(o, p) {
-        this.incomingEdges = 0;
-        this.outgoingEdges = 0;
-        this.object = o;
-        this.position = p;
+        this._incomingEdges = 0;
+        this._outgoingEdges = 0;
+        this._object = o;
+        this._position = p;
     }
     getObject() {
-        return this.object;
+        return this._object;
     }
     getPosition() {
-        return this.position;
+        return this._position;
     }
     getIncomingEdges() {
-        return this.incomingEdges;
+        return this._incomingEdges;
     }
     getOutgoingEdges() {
-        return this.outgoingEdges;
+        return this._outgoingEdges;
     }
     increaseOutgoingEdges() {
-        this.outgoingEdges++;
+        this._outgoingEdges++;
     }
     increaseIncomingEdges() {
-        this.incomingEdges++;
+        this._incomingEdges++;
     }
 }
 module.exports = Vertex;

@@ -15,9 +15,9 @@ class WorkflowGraph extends Graph {
         }
     }
     getVertex(name) {
-        for(let i=0; i<this.vertices.length; i++) {
-            if (this.vertices[i].object === name)
-                return this.vertices[i];
+        for(let i=0; i<this._vertices.length; i++) {
+            if (this._vertices[i].object === name)
+                return this._vertices[i];
         }
     }
 
